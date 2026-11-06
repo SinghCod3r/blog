@@ -175,7 +175,7 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
             </span>
             <span className="text-white/20 hidden min-[420px]:inline">•</span>
             <a
-              href="/rss.xml"
+              href="/blog/rss.xml"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 hover:text-[#d8ff58] transition-colors"
@@ -274,11 +274,11 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
               filteredPosts.map((post, idx) => (
                 <article
                   key={post.slug}
-                  onClick={() => handleCardClick(`/posts/${post.slug}`)}
+                  onClick={() => handleCardClick(`/blog/posts/${post.slug}`)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      window.location.href = `/posts/${post.slug}`;
+                      window.location.href = `/blog/posts/${post.slug}`;
                     }
                   }}
                   role="button"
@@ -359,7 +359,7 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
                         </div>
 
                         <Link
-                          href={`/posts/${post.slug}`}
+                          href={`/blog/posts/${post.slug}`}
                           className="inline-flex items-center gap-1.5 text-xs font-mono text-[#d8ff58] group-hover:translate-x-1 transition-transform"
                         >
                           <span>Read Article</span>

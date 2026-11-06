@@ -106,7 +106,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
         <div className="max-w-[1240px] mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
           {/* Back to Blog Link */}
           <Link
-            href="/"
+            href="/blog/"
             className="group inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:border-[#d8ff58]/40 text-xs sm:text-sm font-mono text-[#f0f0e9] transition-all active:scale-95 shrink-0"
           >
             <ArrowLeft className="w-4 h-4 text-[#d8ff58] transition-transform duration-200 group-hover:-translate-x-1" />
@@ -268,7 +268,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
             {/* Back to Articles */}
             <nav className="flex items-center justify-start" aria-label="Article navigation">
               <Link
-                href="/"
+                href="/blog/"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-[#f0f0e9] font-mono text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 group"
               >
                 <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
