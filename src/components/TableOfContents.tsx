@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Heading } from '../lib/posts';
+import { useEffect, useState } from "react";
+import type { Heading } from "../lib/types";
 
 interface TableOfContentsProps {
   headings: Heading[];
 }
 
 export default function TableOfContents({ headings }: TableOfContentsProps) {
-  const [activeId, setActiveId] = useState<string>('');
+  const [activeId, setActiveId] = useState<string>("");
   const [isOpen, setIsOpen] = useState(true);
 
   if (headings.length < 2) {
@@ -16,6 +16,10 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
   }
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -24,7 +28,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
           }
         });
       },
-      { rootMargin: '-100px 0px -66% 0px', threshold: 0 }
+      { rootMargin: "-100px 0px -66% 0px", threshold: 0 }
     );
 
     headings.forEach((heading) => {
@@ -42,14 +46,14 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
     <aside className="hidden lg:block" aria-label="Table of contents">
       <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4">
         <button
-          className="w-full flex items-center justify-between label font-medium text-muted mb-4 p-2 rounded-lg hover:bg-paper/5 transition-colors"
+          className="w-full flex items-center justify-between text-xs font-mono text-muted mb-4 p-2 rounded-lg hover:bg-paper/5 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
           aria-controls="toc-list"
         >
-          <span>On this page</span>
+          <span className="uppercase tracking-widest">On this page</span>
           <svg
-            className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+            className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -59,39 +63,39 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
           </svg>
         </button>
 
-        <nav id="toc-list" className={`${isOpen ? 'block' : 'hidden'} space-y-1`} aria-label="Table of contents">
+        <nav id="toc-list" className={`${isOpen ? "block" : "hidden"} space-y-1`} aria-label="Table of contents">
           {h2Headings.map((h2) => (
             <div key={h2.id} className="pl-3 border-l border-line/50">
               <a
                 href={`#${h2.id}`}
-                className={`block py-1.5 text-body-sm transition-colors duration-200 ${
-                  activeId === h2.id ? 'text-lime' : 'text-muted hover:text-paper'
+                className={`block py-1.5 text-sm transition-colors duration-200 ${
+                  activeId === h2.id ? "text-lime" : "text-muted hover:text-paper"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
                   const element = document.getElementById(h2.id);
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    history.pushState(null, '', `#${h2.id}`);
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                    history.pushState(null, "", `#${h2.id}`);
                     setActiveId(h2.id);
                   }
                 }}
               >
                 {h2.text}
               </a>
-              {h3Headings.filter((h3) => h3.id.startsWith(h2.id) || headings.indexOf(h3) > headings.indexOf(h2)).slice(0, 3).map((h3) => (
+              {h3Headings.filter((h3) => headings.indexOf(h3) > headings.indexOf(h2)).slice(0, 3).map((h3) => (
                 <a
                   key={h3.id}
                   href={`#${h3.id}`}
-                  className={`block pl-3 py-1 text-caption font-mono transition-colors duration-200 ${
-                    activeId === h3.id ? 'text-lime/80' : 'text-muted/70 hover:text-paper/70'
+                  className={`block pl-3 py-1 text-xs font-mono transition-colors duration-200 ${
+                    activeId === h3.id ? "text-lime/80" : "text-muted/70 hover:text-paper/70"
                   }`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById(h3.id);
                     if (element) {
-                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      history.pushState(null, '', `#${h3.id}`);
+                      element.scrollIntoView({ behavior: "smooth", block: "start" });
+                      history.pushState(null, "", `#${h3.id}`);
                       setActiveId(h3.id);
                     }
                   }}

@@ -2,251 +2,402 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --font-plus-jakarta-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-    --font-syne: 'Syne', system-ui, sans-serif;
-    --font-instrument-serif: 'Instrument Serif', Georgia, serif;
-    --font-jetbrains-mono: 'JetBrains Mono', monospace;
-  }
+:root {
+  --ink: #07080a;
+  --paper: #f0f0e9;
+  --muted: #989c99;
+  --lime: #d8ff58;
+  --violet: #a786ff;
+  --coral: #ff806d;
+  --cyan: #7ff3da;
+  --line: rgba(240, 240, 233, 0.12);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --font-syne: "Syne", sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Instrument Serif", serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
 
-  @font-face {
-    font-family: 'Plus Jakarta Sans';
-    font-weight: 200 800;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/plusjakartasans/v12/RL1GK8eNnsjyhbeeuEeVf4BmNUs.woff2') format('woff2');
-  }
+* {
+  box-sizing: border-box;
+}
 
-  @font-face {
-    font-family: 'Syne';
-    font-weight: 400 800;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/syne/v16/K2FzfZN0BtG8KtKZK3Zc.woff2') format('woff2');
-  }
+html {
+  background: var(--ink);
+  color: var(--paper);
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
 
-  @font-face {
-    font-family: 'Instrument Serif';
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/instrumentserif/v14/oPW9_iaRZKvPK1TjnwZzHBtdmVCw.woff2') format('woff2');
-  }
+body {
+  margin: 0;
+  background-color: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
 
-  @font-face {
-    font-family: 'Instrument Serif';
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/instrumentserif/v14/oPW6_iaRZKvPK1TjnwZzHBtdmVCwd9w.woff2') format('woff2');
-  }
+/* Subtle architectural coordinate grid in background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.15;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
+  transform: translateZ(0);
+}
 
-  @font-face {
-    font-family: 'JetBrains Mono';
-    font-weight: 100 800;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/jetbrainsmono/v23/tDbD2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yfo.woff2') format('woff2');
-  }
+::selection {
+  color: var(--ink);
+  background: var(--lime);
+}
 
-  html {
-    scroll-behavior: smooth;
-  }
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #07080a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lime);
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
 
-  body {
-    @apply bg-ink text-paper antialiased font-sans;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  }
-
-  ::selection {
-    @apply bg-lime/30 text-ink;
-  }
-
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-ink;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-muted/30 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted/50;
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+@supports (-webkit-overflow-scrolling: touch) {
+  html, body {
+    -webkit-overflow-scrolling: touch;
   }
 }
 
-@layer components {
-  .glass {
-    @apply bg-paper/5 backdrop-blur-md border border-line;
-  }
+/* True Frosted Glass Utility */
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  border: 1px solid rgba(240, 240, 233, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
 
-  .glass-strong {
-    @apply bg-paper/10 backdrop-blur-lg border border-line;
-  }
+/* Text glow accents */
+.glow-lime {
+  text-shadow: 0 0 20px rgba(216, 255, 88, 0.4);
+}
+.glow-violet {
+  text-shadow: 0 0 20px rgba(167, 134, 255, 0.4);
+}
 
-  .link {
-    @apply text-lime hover:text-lime/70 transition-colors duration-200 underline-offset-2 hover:underline;
+/* Dynamic Island & Text Rolling Animations */
+@keyframes rollIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
   }
-
-  .link-muted {
-    @apply text-muted hover:text-paper transition-colors duration-200;
-  }
-
-  .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-lime text-ink font-medium text-label rounded-lg
-           hover:bg-lime/90 active:scale-[0.98] transition-all duration-200 ease-expo
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
-  }
-
-  .btn-secondary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-paper/5 text-paper font-medium text-label rounded-lg border border-line
-           hover:bg-paper/10 active:scale-[0.98] transition-all duration-200 ease-expo
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-muted focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
-  }
-
-  .tag {
-    @apply inline-flex items-center px-3 py-1 text-caption font-mono text-muted bg-paper/5 border border-line rounded-full;
-  }
-
-  .tag-accent {
-    @apply inline-flex items-center px-3 py-1 text-caption font-mono text-ink bg-lime rounded-full;
-  }
-
-  .card {
-    @apply glass p-6 md:p-8 transition-all duration-400 ease-expo
-           hover:bg-paper/10 hover:border-lime/30;
-  }
-
-  .prose-custom {
-    @apply max-w-prose-lg mx-auto;
-  }
-
-  .prose-custom h1,
-  .prose-custom h2,
-  .prose-custom h3,
-  .prose-custom h4 {
-    @apply font-display text-paper tracking-tight;
-  }
-
-  .prose-custom h1 {
-    @apply text-display-xl mb-8;
-  }
-
-  .prose-custom h2 {
-    @apply text-display-md mb-6 mt-14 pb-3 border-b border-line;
-  }
-
-  .prose-custom h3 {
-    @apply text-display-sm mb-4 mt-10;
-  }
-
-  .prose-custom p {
-    @apply text-body leading-relaxed mb-6 text-paper/90;
-  }
-
-  .prose-custom a {
-    @apply link font-medium;
-  }
-
-  .prose-custom blockquote {
-    @apply border-l-2 border-lime/50 pl-6 my-8 italic text-body-lg text-paper/80 font-serif;
-  }
-
-  .prose-custom code {
-    @apply font-mono text-sm text-cyan bg-paper/5 px-1.5 py-0.5 rounded;
-  }
-
-  .prose-custom pre {
-    @apply bg-ink border border-line rounded-xl overflow-x-auto mb-8;
-  }
-
-  .prose-custom pre code {
-    @apply bg-transparent p-0 text-body-sm text-paper/90;
-  }
-
-  .prose-custom ul {
-    @apply list-disc list-inside space-y-3 mb-6 text-body text-paper/90;
-  }
-
-  .prose-custom ol {
-    @apply list-decimal list-inside space-y-3 mb-6 text-body text-paper/90;
-  }
-
-  .prose-custom li {
-    @apply leading-relaxed;
-  }
-
-  .prose-custom li::marker {
-    @apply text-muted;
-  }
-
-  .prose-custom table {
-    @apply w-full border-collapse mb-8 text-body-sm;
-  }
-
-  .prose-custom th {
-    @apply text-left font-medium text-label text-muted border-b border-line pb-2;
-  }
-
-  .prose-custom td {
-    @apply py-3 border-b border-line/50 text-paper/80;
-  }
-
-  .prose-custom tr:last-child td {
-    @apply border-0;
-  }
-
-  .prose-custom hr {
-    @apply border-line my-12;
-  }
-
-  .prose-custom img {
-    @apply rounded-xl border border-line my-8;
-  }
-
-  .prose-custom kbd {
-    @apply font-mono text-caption bg-paper/10 border border-line px-2 py-1 rounded;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.animate-roll-in {
+  animation: rollIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
-  .animate-in {
-    animation: fadeIn 0.6s ease-out forwards, slideUp 0.6s ease-out forwards;
+@keyframes islandExpand {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
   }
-
-  .delay-100 { animation-delay: 100ms; }
-  .delay-200 { animation-delay: 200ms; }
-  .delay-300 { animation-delay: 300ms; }
-  .delay-400 { animation-delay: 400ms; }
-  .delay-500 { animation-delay: 500ms; }
-
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
+}
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+.animate-island-expand {
+  animation: islandExpand 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Floating animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
   }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 6s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 15px rgba(216, 255, 88, 0.35));
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 30px rgba(216, 255, 88, 0.65));
+  }
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 5s ease-in-out infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 24s linear infinite;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Typography utilities for prose content */
+.prose-custom {
+  @apply mx-auto max-w-3xl;
+}
+
+.prose-custom h1,
+.prose-custom h2,
+.prose-custom h3,
+.prose-custom h4 {
+  @apply font-display text-paper tracking-tight;
+}
+
+.prose-custom h1 {
+  @apply text-4xl sm:text-5xl md:text-6xl mb-8;
+}
+
+.prose-custom h2 {
+  @apply text-2xl sm:text-3xl md:text-4xl mb-6 mt-14 pb-3 border-b border-line;
+}
+
+.prose-custom h3 {
+  @apply text-xl sm:text-2xl mb-4 mt-10;
+}
+
+.prose-custom p {
+  @apply text-base leading-relaxed mb-6 text-paper/90;
+}
+
+.prose-custom a {
+  @apply text-lime hover:text-lime/70 transition-colors duration-200 underline-offset-2 hover:underline font-medium;
+}
+
+.prose-custom blockquote {
+  @apply border-l-2 border-lime/50 pl-6 my-8 italic text-lg text-paper/80 font-serif;
+}
+
+.prose-custom code {
+  @apply font-mono text-sm text-cyan bg-paper/5 px-1.5 py-0.5 rounded;
+}
+
+.prose-custom pre {
+  @apply bg-ink border border-line rounded-xl overflow-x-auto mb-8;
+}
+
+.prose-custom pre code {
+  @apply bg-transparent p-0 text-base text-paper/90;
+}
+
+.prose-custom ul {
+  @apply list-disc list-inside space-y-3 mb-6 text-base text-paper/90;
+}
+
+.prose-custom ol {
+  @apply list-decimal list-inside space-y-3 mb-6 text-base text-paper/90;
+}
+
+.prose-custom li {
+  @apply leading-relaxed;
+}
+
+.prose-custom li::marker {
+  @apply text-muted;
+}
+
+.prose-custom table {
+  @apply w-full border-collapse mb-8 text-sm;
+}
+
+.prose-custom th {
+  @apply text-left font-medium text-xs text-muted border-b border-line pb-2;
+}
+
+.prose-custom td {
+  @apply py-3 border-b border-line/50 text-paper/80;
+}
+
+.prose-custom tr:last-child td {
+  @apply border-0;
+}
+
+.prose-custom hr {
+  @apply border-line my-12;
+}
+
+.prose-custom img {
+  @apply rounded-xl border border-line my-8;
+}
+
+.prose-custom kbd {
+  @apply font-mono text-xs bg-paper/10 border border-line px-2 py-1 rounded;
+}
+
+/* Code block specific styling */
+.code-block-container {
+  @apply relative;
+}
+
+.code-block-header {
+  @apply flex items-center justify-between px-4 py-2 border-b border-line bg-paper/5;
+}
+
+.code-block-language {
+  @apply text-xs font-mono text-muted;
+}
+
+.code-block-filename {
+  @apply text-xs font-mono text-muted truncate max-w-[200px];
+}
+
+.code-block-copy {
+  @apply opacity-0 transition-opacity p-1.5 rounded text-xs font-mono text-muted hover:text-lime hover:bg-paper/10 focus:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-lime;
+}
+
+.code-block-container:hover .code-block-copy {
+  opacity: 1;
+}
+
+.code-block-pre {
+  @apply p-4 md:p-6 overflow-x-auto bg-ink border border-line rounded-b-xl;
+}
+
+.code-block-code {
+  @apply font-mono text-base text-paper/90;
+}
+
+/* Button styles matching portfolio */
+.btn-portfolio-primary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-lime text-ink font-mono text-xs font-semibold transition-all duration-200 ease-expo active:scale-95 hover:bg-lime/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+}
+
+.btn-portfolio-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-white font-mono text-xs font-medium transition-all duration-200 ease-expo active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+}
+
+.btn-portfolio-ghost {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-transparent hover:bg-white/[0.04] border border-white/10 text-white/80 hover:text-white font-mono text-xs font-medium transition-all duration-200 ease-expo active:scale-95;
+}
+
+/* Tag styles */
+.tag-portfolio {
+  @apply inline-flex items-center px-2 py-0.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-paper/80;
+}
+
+.tag-portfolio-accent {
+  @apply inline-flex items-center px-2 py-0.5 rounded-full bg-lime text-ink text-xs font-mono font-medium;
+}
+
+/* Card base styles matching portfolio */
+.card-portfolio {
+  @apply relative rounded-2xl sm:rounded-3xl border border-white/15 bg-[#121316]/60 backdrop-blur-[30px] saturate-[190%] shadow-[0_15px_40px_rgba(0,0,0,0.35)] overflow-hidden flex flex-col [transform-style:preserve-3d] transition-transform;
+}
+
+/* Accent color map for tags/badges */
+.accent-lime { @apply text-lime; }
+.accent-violet { @apply text-violet; }
+.accent-coral { @apply text-coral; }
+.accent-cyan { @apply text-cyan; }
+
+/* Text balance utility */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Focus visible styles */
+.focus-visible-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
 }

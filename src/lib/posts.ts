@@ -4,32 +4,11 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import remarkHtml from 'remark-html';
 import remarkGfm from 'remark-gfm';
+import type { Post, PostFrontmatter, Heading } from './types';
+import { formatDate, calculateReadingTime } from './utils';
 
-export interface PostFrontmatter {
-  title: string;
-  description: string;
-  date: string;
-  category: string;
-  tags: string[];
-  featured?: boolean;
-  readingTime?: string;
-  cover?: string;
-  updated?: string;
-}
-
-export interface Post {
-  slug: string;
-  frontmatter: PostFrontmatter;
-  content: string;
-  htmlContent: string;
-  headings: Heading[];
-}
-
-export interface Heading {
-  level: number;
-  text: string;
-  id: string;
-}
+export * from './types';
+export * from './utils';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
@@ -127,20 +106,4 @@ export function getAllTags(): string[] {
   const posts = getAllPosts();
   const tags = new Set(posts.flatMap(post => post.frontmatter.tags));
   return Array.from(tags).sort();
-}
-
-export function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
-export function calculateReadingTime(content: string): string {
-  const wordsPerMinute = 200;
-  const words = content.trim().split(/\s+/).length;
-  const minutes = Math.ceil(words / wordsPerMinute);
-  return `${minutes} min read`;
 }
