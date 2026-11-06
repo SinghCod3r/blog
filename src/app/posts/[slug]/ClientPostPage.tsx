@@ -14,7 +14,7 @@ import {
   BookOpen,
   ArrowUpRight,
 } from "lucide-react";
-import { GithubIcon } from "../../../components/Icons";
+import { GithubIcon, MediumIcon } from "../../../components/Icons";
 import type { Post } from "../../../lib/posts";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -27,6 +27,7 @@ interface ClientPostPageProps {
 export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
   const [introDone, setIntroDone] = useState(false);
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const islandRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -87,6 +88,14 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // Click outside & Escape key listeners for nav
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -138,9 +147,8 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
 
       {/* Dynamic Island Navigation */}
       <div
-        onClick={() => setIsNavExpanded(true)}
         className={`fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none will-change-transform ${
-          introDone
+          introDone && !isScrolled
             ? "opacity-100 translate-y-0 pointer-events-auto scale-100"
             : "opacity-0 -translate-y-10 pointer-events-none scale-95"
         }`}
@@ -149,6 +157,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
           /* COMPACT DYNAMIC ISLAND STATE */
           <div
             ref={islandRef}
+            onClick={() => setIsNavExpanded(true)}
             className="group relative flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-[#08090c]/92 hover:bg-[#0c0d12] backdrop-blur-2xl border border-white/15 hover:border-[#d8ff58]/40 shadow-[0_12px_36px_rgba(0,0,0,0.85)] cursor-pointer transition-all duration-300 active:scale-95"
             role="button"
             aria-label="Open navigation"
@@ -309,6 +318,15 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
                 <GithubIcon className="w-3 h-3 text-[#d8ff58]" />
                 <span>GitHub</span>
               </a>
+              <a
+                href="https://singhcod3r.medium.com/"
+                rel="noopener noreferrer"
+                onClick={() => setIsNavExpanded(false)}
+                className="flex-1 py-1.5 px-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-white font-mono text-[11px] font-medium flex items-center justify-center gap-1 transition-all duration-200 active:scale-95 group"
+              >
+                <MediumIcon className="w-3 h-3 text-[#ff806d]" />
+                <span>Medium</span>
+              </a>
             </div>
           </div>
         )}
@@ -423,6 +441,14 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
                     aria-label="GitHub"
                   >
                     <GithubIcon className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://singhcod3r.medium.com/"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all active:scale-95"
+                    aria-label="Medium"
+                  >
+                    <MediumIcon className="w-4 h-4" />
                   </a>
                   <a
                     href="https://singhcod3r.github.io/"
