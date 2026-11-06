@@ -398,7 +398,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
               <div className="flex items-center gap-4 flex-wrap">
                 <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#d8ff58] shadow-[0_0_15px_rgba(216,255,88,0.25)] shrink-0">
                   <Image
-                    src="/blog/avatar_article.webp"
+                    src="/blog/avatar_dynamic_island.webp"
                     alt="Ayush Singh"
                     fill
                     sizes="56px"

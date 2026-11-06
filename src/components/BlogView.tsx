@@ -413,11 +413,11 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
               filteredPosts.map((post, idx) => (
                 <article
                   key={post.slug}
-                  onClick={() => handleCardClick(`/posts/${post.slug}`)}
+                  onClick={() => handleCardClick(`/blog/posts/${post.slug}/`)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      window.location.href = `/posts/${post.slug}`;
+                      window.location.href = `/blog/posts/${post.slug}/`;
                     }
                   }}
                   role="button"
