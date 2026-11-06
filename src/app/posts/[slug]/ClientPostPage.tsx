@@ -245,7 +245,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
               </Link>
 
               <Link
-                href="/blog/"
+                href="/"
                 onClick={() => setIsNavExpanded(false)}
                 className="group/item flex items-center justify-between px-3 py-2 rounded-xl text-left transition-all duration-200 active:scale-[0.98] hover:bg-white/[0.04] text-[#989c99] hover:text-[#f0f0e9]"
               >
@@ -293,7 +293,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
               </a>
 
               <a
-                href="/blog/"
+                href="/"
                 onClick={() => setIsNavExpanded(false)}
                 className="flex-1 py-1.5 px-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-white font-mono text-[11px] font-medium flex items-center justify-center gap-1 transition-all duration-200 active:scale-95 group"
               >
@@ -314,9 +314,9 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
         )}
       </div>
 
-      <main className="max-w-[1240px] mx-auto px-4 sm:px-8 py-10 sm:py-16">
+      <main className="w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-20 py-10 sm:py-16">
         <article className="prose-custom" itemScope itemType="https://schema.org/TechArticle">
-          <header className="mb-12 md:mb-16 article-header-reveal">
+          <header className="max-w-5xl mb-12 md:mb-16 article-header-reveal">
             <div className="flex items-center gap-3 mb-6 flex-wrap">
               <span
                 className="px-3 py-1 rounded-full border border-white/20 bg-black/60 backdrop-blur-md text-xs font-mono font-medium"
@@ -360,8 +360,8 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
             </div>
           </header>
 
-          <div className="grid lg:grid-cols-[1fr_260px] gap-8 lg:gap-12">
-            <div className="min-w-0 prose prose-invert prose-custom max-w-none" itemProp="articleBody">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_280px] gap-10 lg:gap-20 xl:gap-28 items-start">
+            <div className="min-w-0 max-w-[78ch] prose prose-invert prose-custom" itemProp="articleBody">
               <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
             </div>
 
@@ -418,7 +418,6 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
                 <div className="flex items-center gap-2 shrink-0">
                   <a
                     href="https://github.com/SinghCod3r"
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all active:scale-95"
                     aria-label="GitHub"
@@ -439,7 +438,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
             {/* Back to Articles */}
             <nav className="flex items-center justify-start" aria-label="Article navigation">
               <Link
-                href="/blog/"
+                href="/"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-[#f0f0e9] font-mono text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 group"
               >
                 <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -454,12 +453,11 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
 
       {/* Footer */}
       <footer className="mt-16 sm:mt-24 border-t border-white/10 py-8 px-4 sm:px-8 text-center text-xs font-mono text-[#989c99]">
-        <div className="max-w-[1240px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-20 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>
             © 2026 Ayush Singh. All writings on{" "}
             <a
               href="https://singhcod3r.github.io/blog/"
-              target="_blank"
               rel="noopener noreferrer"
               className="text-[#d8ff58] hover:underline"
             >

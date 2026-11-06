@@ -106,7 +106,6 @@ export default function ArticleLayout({ post }: ArticleLayoutProps) {
             <div className="flex items-center gap-2 shrink-0">
               <a
                 href="https://github.com/SinghCod3r"
-                target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all active:scale-95"
                 aria-label="GitHub"
@@ -115,7 +114,6 @@ export default function ArticleLayout({ post }: ArticleLayoutProps) {
               </a>
               <a
                 href="https://singhcod3r.github.io/"
-                target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-white/80 hover:text-[#a786ff] transition-all active:scale-95"
                 aria-label="Portfolio"
@@ -141,7 +139,6 @@ export default function ArticleLayout({ post }: ArticleLayoutProps) {
           <div className="flex items-center gap-2">
             <a
               href="https://github.com/OpenPrinting/system-config-printer"
-              target="_blank"
               rel="noopener noreferrer"
               className="btn-portfolio-ghost group"
             >
