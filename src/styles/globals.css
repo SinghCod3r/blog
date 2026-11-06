@@ -227,7 +227,7 @@ html.lenis, html.lenis body {
 
 /* Typography utilities for prose content */
 .prose-custom {
-  @apply mx-auto max-w-3xl;
+  @apply w-full;
 }
 
 .prose-custom h1,

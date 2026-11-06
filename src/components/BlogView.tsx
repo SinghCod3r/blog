@@ -413,11 +413,11 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
               filteredPosts.map((post, idx) => (
                 <article
                   key={post.slug}
-                  onClick={() => handleCardClick(`/blog/posts/${post.slug}`)}
+                  onClick={() => handleCardClick(`/posts/${post.slug}`)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      window.location.href = `/blog/posts/${post.slug}`;
+                      window.location.href = `/posts/${post.slug}`;
                     }
                   }}
                   role="button"
@@ -474,7 +474,7 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
 
                       {/* Title */}
                       <h2 className="text-lg sm:text-xl font-display font-semibold tracking-tight text-[#f0f0e9] group-hover:text-white transition-colors mb-2 leading-snug">
-                        <Link href={`/blog/posts/${post.slug}`} className="group-hover:text-[#d8ff58] transition-colors underline-offset-4">
+                        <Link href={`/posts/${post.slug}`} className="group-hover:text-[#d8ff58] transition-colors underline-offset-4">
                           {post.frontmatter.title}
                         </Link>
                       </h2>
@@ -498,7 +498,7 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
                         </div>
 
                         <Link
-                          href={`/blog/posts/${post.slug}`}
+                          href={`/posts/${post.slug}`}
                           className="inline-flex items-center gap-1.5 text-xs font-mono text-[#d8ff58] group-hover:translate-x-1 transition-transform"
                         >
                           <span>Read Article</span>
@@ -561,7 +561,6 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
               {/* GitHub Follow Button */}
               <a
                 href="https://github.com/SinghCod3r"
-                target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-mono font-bold bg-[#d8ff58] text-[#07080a] hover:opacity-90 transition-opacity mb-3"
               >
@@ -573,7 +572,6 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
               {/* RSS Link Pill */}
               <a
                 href="/blog/rss.xml"
-                target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-[11px] font-mono border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] text-[#989c99] hover:text-[#f0f0e9] transition-colors mb-4"
               >
@@ -585,7 +583,6 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
               <div className="flex items-center justify-center gap-2 pt-2 border-t border-white/[0.08]">
                 <a
                   href="https://github.com/SinghCod3r"
-                  target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-[#989c99] hover:text-white transition-colors"
                   aria-label="GitHub"
@@ -594,7 +591,6 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
                 </a>
                 <a
                   href="https://www.linkedin.com/in/ayush-singh-46b5a3286/"
-                  target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-[#989c99] hover:text-white transition-colors"
                   aria-label="LinkedIn"
@@ -639,7 +635,6 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
             © 2026 Ayush Singh. All writings on{" "}
             <a
               href="https://singhcod3r.github.io/blog/"
-              target="_blank"
               rel="noopener noreferrer"
               className="text-[#d8ff58] hover:underline"
             >

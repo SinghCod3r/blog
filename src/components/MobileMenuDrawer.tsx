@@ -101,8 +101,6 @@ export default function MobileMenuDrawer() {
             <a
               key={item.href}
               href={item.href}
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noopener noreferrer" : undefined}
               onClick={(e) => handleLinkClick(e, item.href, item.external)}
               style={{
                 transitionDelay: isOpen ? `${i * 45}ms` : "0ms",
@@ -130,8 +128,6 @@ export default function MobileMenuDrawer() {
           <div className="grid grid-cols-2 gap-3">
             <a
               href="https://singhcod3r.github.io/Ayush_Singh.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-[#d8ff58]/40 bg-[#d8ff58]/10 text-[#d8ff58] text-xs font-mono font-medium active:scale-95 transition-all"
             >
               <FileText className="w-3.5 h-3.5" />
@@ -150,7 +146,6 @@ export default function MobileMenuDrawer() {
           <div className="flex items-center justify-center gap-6 pt-2 text-xs font-mono text-[#989c99]">
             <a
               href="https://github.com/SinghCod3r"
-              target="_blank"
               rel="noreferrer"
               className="flex items-center gap-1.5 hover:text-white transition-colors"
             >
@@ -160,7 +155,6 @@ export default function MobileMenuDrawer() {
             <span>•</span>
             <a
               href="https://linkedin.com/in/singhcod3r"
-              target="_blank"
               rel="noreferrer"
               className="flex items-center gap-1.5 hover:text-white transition-colors"
             >

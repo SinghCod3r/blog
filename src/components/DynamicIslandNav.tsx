@@ -298,7 +298,6 @@ export default function DynamicIslandNav({ visible = true }: { visible?: boolean
             <div className="pt-2 border-t border-white/10 flex items-center gap-1.5">
               <a
                 href="https://singhcod3r.github.io/"
-                target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsExpanded(false)}
                 className="flex-1 py-1.5 px-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-white font-mono text-[11px] font-medium flex items-center justify-center gap-1 transition-all duration-200 active:scale-95 group"
@@ -309,7 +308,6 @@ export default function DynamicIslandNav({ visible = true }: { visible?: boolean
 
               <a
                 href="https://github.com/SinghCod3r"
-                target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsExpanded(false)}
                 className="flex-1 py-1.5 px-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-white font-mono text-[11px] font-medium flex items-center justify-center gap-1 transition-all duration-200 active:scale-95 group"
@@ -320,7 +318,6 @@ export default function DynamicIslandNav({ visible = true }: { visible?: boolean
 
               <a
                 href="https://singhcod3r.github.io/Ayush_Singh.pdf"
-                target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 py-1.5 px-2 rounded-xl bg-white/[0.06] hover:bg-[#d8ff58] text-white hover:text-black font-mono text-[11px] font-semibold flex items-center justify-center gap-1 transition-all duration-200 active:scale-95 group"
               >
