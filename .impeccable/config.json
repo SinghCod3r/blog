@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "plus jakarta sans",
+        "createdAt": "2026-11-06T06:36:24.720Z",
+        "reason": "User explicitly specified this font in design system requirements to match existing portfolio"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument serif",
+        "createdAt": "2026-11-06T06:36:39.245Z",
+        "reason": "User explicitly specified this font in design system requirements for editorial italic accents"
+      }
+    ]
+  }
+}

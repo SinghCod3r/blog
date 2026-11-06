@@ -1,0 +1,21 @@
+{
+  "name": "Ayush Singh — Technical Writings",
+  "short_name": "Technical Writings",
+  "description": "Notes from building, debugging and contributing to real software.",
+  "start_url": "/blog/",
+  "display": "standalone",
+  "background_color": "#07080a",
+  "theme_color": "#07080a",
+  "icons": [
+    {
+      "src": "/blog/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/blog/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
