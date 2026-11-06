@@ -274,11 +274,11 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
               filteredPosts.map((post, idx) => (
                 <article
                   key={post.slug}
-                  onClick={() => handleCardClick(`/${post.slug}`)}
+                  onClick={() => handleCardClick(`/posts/${post.slug}`)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      window.location.href = `/${post.slug}`;
+                      window.location.href = `/posts/${post.slug}`;
                     }
                   }}
                   role="button"
@@ -359,7 +359,7 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
                         </div>
 
                         <Link
-                          href={`/${post.slug}`}
+                          href={`/posts/${post.slug}`}
                           className="inline-flex items-center gap-1.5 text-xs font-mono text-[#d8ff58] group-hover:translate-x-1 transition-transform"
                         >
                           <span>Read Article</span>
