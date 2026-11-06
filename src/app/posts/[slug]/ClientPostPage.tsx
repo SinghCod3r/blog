@@ -12,7 +12,6 @@ import {
   ChevronDown,
   X,
   BookOpen,
-  ArrowUpRight,
 } from "lucide-react";
 import { GithubIcon, MediumIcon } from "../../../components/Icons";
 import type { Post } from "../../../lib/posts";
@@ -411,56 +410,6 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
           </div>
 
           <footer className="mt-16 pt-8 border-t border-white/10">
-            {/* Author Section */}
-            <div className="mb-10 p-6 rounded-2xl border border-white/10 bg-[#121316]/75 backdrop-blur-[24px]">
-              <div className="flex items-center gap-4 flex-wrap">
-                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#d8ff58] shadow-[0_0_15px_rgba(216,255,88,0.25)] shrink-0">
-                  <Image
-                    src="/blog/avatar_dynamic_island.webp"
-                    alt="Ayush Singh"
-                    fill
-                    sizes="56px"
-                    className="object-cover"
-                  />
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#d8ff58] ring-2 ring-[#07080a]" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-3 mb-2 flex-wrap">
-                    <span className="text-lg font-display font-bold text-white">Ayush Singh</span>
-                    <span className="text-xs font-mono text-[#d8ff58] tracking-wider uppercase">OpenPrinting Maintainer</span>
-                  </div>
-                  <p className="text-sm text-[#989c99] font-light max-w-xs">
-                    CSE graduate and Open Source contributor working across Linux, Python, web technologies and developer tooling.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <a
-                    href="https://github.com/SinghCod3r"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all active:scale-95"
-                    aria-label="GitHub"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="https://singhcod3r.medium.com/"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all active:scale-95"
-                    aria-label="Medium"
-                  >
-                    <MediumIcon className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="https://singhcod3r.github.io/"
-                    className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-white/80 hover:text-[#a786ff] transition-all active:scale-95"
-                    aria-label="Portfolio"
-                  >
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
             {/* Back to Articles */}
             <nav className="flex items-center justify-start" aria-label="Article navigation">
               <Link

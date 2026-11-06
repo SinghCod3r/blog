@@ -6,7 +6,7 @@ import { formatDate, calculateReadingTime } from "../lib/utils";
 import TableOfContents from "./TableOfContents";
 import CodeBlock from "./CodeBlock";
 import Link from "next/link";
-import { ArrowUpRight, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { GithubIcon } from "./Icons";
 
 interface ArticleLayoutProps {
@@ -83,47 +83,6 @@ export default function ArticleLayout({ post }: ArticleLayoutProps) {
       </div>
 
       <footer className="mt-16 pt-8 border-t border-line">
-        {/* Author Section */}
-        <div className="mb-10 p-6 glass-panel rounded-2xl">
-          <div className="flex items-center gap-4">
-            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#d8ff58] shadow-[0_0_15px_rgba(216,255,88,0.25)] shrink-0">
-              <img
-                src="/blog/avatar_dynamic_island.webp"
-                alt="Ayush Singh"
-                className="w-full h-full object-cover"
-              />
-              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#d8ff58] ring-2 ring-[#07080a]" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-lg font-display font-bold text-white">Ayush Singh</span>
-                <span className="text-xs font-mono text-[#d8ff58] tracking-wider uppercase">OpenPrinting Maintainer</span>
-              </div>
-              <p className="text-sm text-[#989c99] font-light max-w-xs">
-                CSE graduate and Open Source contributor working across Linux, Python, web technologies and developer tooling.
-              </p>
-            </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <a
-                href="https://github.com/SinghCod3r"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all active:scale-95"
-                aria-label="GitHub"
-              >
-                <GithubIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="https://singhcod3r.github.io/"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-white/80 hover:text-[#a786ff] transition-all active:scale-95"
-                aria-label="Portfolio"
-              >
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-
         {/* Article Navigation */}
         <nav className="flex items-center justify-between" aria-label="Article navigation">
           <Link
