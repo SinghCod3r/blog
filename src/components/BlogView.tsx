@@ -359,7 +359,7 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
           </div>
 
           <h1 className="blog-hero-anim text-3xl sm:text-5xl lg:text-6xl font-display font-medium tracking-tight text-[#f0f0e9] mb-4">
-            Technical Writings.
+            My Articles & Notes 
           </h1>
 
           <p className="blog-hero-anim text-sm sm:text-lg text-[#989c99] max-w-2xl font-light leading-relaxed">
