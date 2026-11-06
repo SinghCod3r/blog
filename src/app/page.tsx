@@ -1,34 +1,26 @@
-import { generateSEO, generateWebsiteJSONLD, SITE_URL } from "../lib/seo";
-import { getAllPosts, getFeaturedPost, Post } from "../lib/posts";
 import { Metadata } from "next";
-import ClientHomePage from "./ClientHomePage";
+import { getAllPosts } from "../lib/posts";
+import BlogView from "../components/BlogView";
 
 export const metadata: Metadata = {
-  ...generateSEO({
-    title: "Technical Writings",
-    description: "Notes from building, debugging and contributing to real software.",
-    canonicalUrl: SITE_URL,
-  }),
+  title: "Technical Writings",
+  description: "Notes from building, debugging and contributing to real software.",
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": "/rss.xml",
+    },
+  },
   openGraph: {
     title: "Technical Writings",
     description: "Notes from building, debugging and contributing to real software.",
-    url: SITE_URL,
+    url: "https://singhcod3r.github.io/blog/",
     type: "website",
   },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
   const posts = getAllPosts();
-  const featuredPost = getFeaturedPost();
-  const otherPosts = featuredPost ? posts.filter((p) => p.slug !== featuredPost.slug) : posts;
 
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebsiteJSONLD()) }}
-      />
-      <ClientHomePage posts={posts} featuredPost={featuredPost} otherPosts={otherPosts} />
-    </>
-  );
+  return <BlogView initialPosts={posts} />;
 }

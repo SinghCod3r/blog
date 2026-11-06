@@ -1,6 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import SmoothScrollProvider from '../components/SmoothScrollProvider';
 import '../styles/globals.css';
 
@@ -167,11 +165,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased selection:bg-[#d8ff58] selection:text-[#07080a] bg-[#07080a] text-[#f0f0e9] min-h-screen flex flex-col">
-        <Header />
         <main className="flex-1" id="main-content">
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
         </main>
-        <Footer />
       </body>
     </html>
   );
