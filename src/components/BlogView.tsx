@@ -11,8 +11,11 @@ import {
   Clock,
   Rss,
   Search,
+  ChevronDown,
+  X,
+  BookOpen,
 } from "lucide-react";
-import { GithubIcon, LinkedinIcon, MediumIcon } from "@/components/Icons";
+import { GithubIcon } from "@/components/Icons";
 import type { Post } from "@/lib/posts";
 
 interface BlogViewProps {
@@ -23,6 +26,11 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Dynamic Island Navigation state
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [introDone, setIntroDone] = useState(false);
+  const islandRef = useRef<HTMLDivElement>(null);
 
   // Get all unique categories
   const allCategories = Array.from(new Set(initialPosts.map(p => p.frontmatter.category))).sort();
@@ -65,6 +73,7 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
     gsap.registerPlugin(ScrollTrigger);
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIntroDone(true);
       return;
     }
 
@@ -110,6 +119,8 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
       );
     }, containerRef);
 
+    setIntroDone(true);
+
     return () => ctx.revert();
   }, []);
 
@@ -136,9 +147,34 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
     }
   }, [activeCategory, searchQuery]);
 
+  // Click outside & Escape key listeners for nav
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (islandRef.current && !islandRef.current.contains(e.target as Node)) {
+        setIsNavExpanded(false);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsNavExpanded(false);
+      }
+    };
+
+    if (isNavExpanded) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isNavExpanded]);
+
   const handleCardClick = (url: string) => {
     if (typeof window !== "undefined") {
-      window.open(url, "_blank", "noopener,noreferrer");
+      window.location.href = url;
     }
   };
 
@@ -153,53 +189,156 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-[#7ff3da]/[0.02] blur-[140px]" />
       </div>
 
-      {/* Top Navigation Bar */}
-      <header className="sticky top-0 z-40 w-full backdrop-blur-2xl bg-[#07080a]/85 border-b border-white/[0.08]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
-          {/* Back to Portfolio Link */}
-          <Link
-            href="https://singhcod3r.github.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:border-[#d8ff58]/40 text-xs sm:text-sm font-mono text-[#f0f0e9] transition-all active:scale-95 shrink-0"
+      {/* Dynamic Island Navigation */}
+      <div
+        onClick={() => setIsNavExpanded(true)}
+        className={`fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none will-change-transform ${
+          introDone
+            ? "opacity-100 translate-y-0 pointer-events-auto scale-100"
+            : "opacity-0 -translate-y-10 pointer-events-none scale-95"
+        }`}
+      >
+        {!isNavExpanded ? (
+          /* COMPACT DYNAMIC ISLAND STATE */
+          <div
+            ref={islandRef}
+            className="group relative flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-[#08090c]/92 hover:bg-[#0c0d12] backdrop-blur-2xl border border-white/15 hover:border-[#d8ff58]/40 shadow-[0_12px_36px_rgba(0,0,0,0.85)] cursor-pointer transition-all duration-300 active:scale-95"
+            role="button"
+            aria-label="Open navigation"
           >
-            <ArrowLeft className="w-4 h-4 text-[#d8ff58] transition-transform duration-200 group-hover:-translate-x-1" />
-            <span>Portfolio</span>
-          </Link>
+            {/* Specular Top Sheen */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-full bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
-          {/* Center: RSS Feed Status Badge */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-black/60 text-[11px] font-mono text-[#989c99]">
-            <span className="w-2 h-2 rounded-full bg-[#d8ff58] shadow-[0_0_8px_#d8ff58] animate-pulse" />
-            <span className="hidden min-[420px]:inline text-[#f0f0e9] font-medium">
-              Local Posts
+            {/* Circular Profile Avatar */}
+            <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border border-white/25 group-hover:border-[#d8ff58] transition-colors shrink-0">
+              <Image
+                src="/blog/avatar_dynamic_island.webp"
+                alt="Ayush Singh"
+                fill
+                sizes="28px"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                priority
+                unoptimized
+              />
+              <span className="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-[#d8ff58] ring-1 ring-black" />
+            </div>
+
+            {/* Section Name */}
+            <span className="inline-flex items-center justify-center font-mono text-[11px] sm:text-xs font-bold tracking-wider text-white uppercase transition-all duration-380 ease-[cubic-bezier(0.16,1,0.3,1)]">
+              Blog
             </span>
-            <span className="text-white/20 hidden min-[420px]:inline">•</span>
-            <a
-              href="/blog/rss.xml"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-[#d8ff58] transition-colors"
-            >
-              <Rss className="w-3 h-3 text-[#d8ff58]" />
-              <span className="hidden sm:inline">/rss.xml</span>
-              <span className="sm:hidden">RSS Feed</span>
-            </a>
-          </div>
 
-          {/* Right: Direct Medium Profile Button */}
-          <a
-            href="https://singhcod3r.medium.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-[#d8ff58] text-[#f0f0e9] hover:text-[#07080a] text-xs sm:text-sm font-mono transition-all duration-200 active:scale-95 shrink-0"
+            {/* Expand Indicator */}
+            <div className="flex items-center gap-1 pl-0.5 text-[#989c99] group-hover:text-[#d8ff58] transition-colors">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d8ff58] shadow-[0_0_6px_#d8ff58] animate-pulse" />
+              <ChevronDown className="w-3 h-3 transition-transform duration-200 group-hover:translate-y-0.5" />
+            </div>
+          </div>
+        ) : (
+          /* EXPANDED DYNAMIC ISLAND STATE */
+          <div
+            ref={islandRef}
+            className="w-[92vw] max-w-[340px] sm:max-w-[380px] rounded-3xl bg-[#090a0e]/95 backdrop-blur-3xl border border-white/15 shadow-[0_24px_64px_rgba(0,0,0,0.9)] p-4 sm:p-5 flex flex-col gap-3.5 animate-island-expand"
           >
-            <MediumIcon className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Follow on</span>
-            <span>Medium</span>
-            <ExternalLink className="w-3 h-3" />
-          </a>
-        </div>
-      </header>
+            {/* Specular Top Sheen */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-3xl bg-gradient-to-r from-transparent via-[#d8ff58]/60 to-transparent" />
+
+            {/* Top Bar: Profile Details & Close Button */}
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <div className="flex items-center gap-3">
+                <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-[#d8ff58] shadow-[0_0_15px_rgba(216,255,88,0.25)] shrink-0">
+                  <Image
+                    src="/blog/avatar_dynamic_island.webp"
+                    alt="Ayush Singh"
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                    unoptimized
+                  />
+                  <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-[#d8ff58] ring-1.5 ring-black" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-display font-bold text-white tracking-wide">
+                    Ayush Singh
+                  </span>
+                  <span className="text-[10px] font-mono text-[#d8ff58] tracking-wider uppercase">
+                    OpenPrinting Maintainer
+                  </span>
+                </div>
+              </div>
+
+              {/* Close Button */}
+              <button
+                onClick={() => setIsNavExpanded(false)}
+                className="w-7 h-7 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 flex items-center justify-center text-white/80 hover:text-white transition-all active:scale-90"
+                aria-label="Close navigation"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Navigation Options */}
+            <nav className="flex flex-col gap-1 py-1">
+              <Link
+                href="https://singhcod3r.github.io/"
+                onClick={() => setIsNavExpanded(false)}
+                className="group/item flex items-center justify-between px-3 py-2 rounded-xl text-left transition-all duration-200 active:scale-[0.98] hover:bg-white/[0.04] text-[#989c99] hover:text-[#f0f0e9]"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="font-mono text-[10px] text-white/35 group-hover/item:text-[#d8ff58] transition-colors">
+                    01
+                  </span>
+                  <span className="font-mono text-xs font-bold tracking-wider uppercase transition-colors group-hover/item:text-white">
+                    Portfolio
+                  </span>
+                </div>
+                <span className="text-xs text-white/30 group-hover/item:text-white/80 transition-transform duration-200 group-hover/item:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+
+              <Link
+                href="https://github.com/SinghCod3r"
+                onClick={() => setIsNavExpanded(false)}
+                className="group/item flex items-center justify-between px-3 py-2 rounded-xl text-left transition-all duration-200 active:scale-[0.98] hover:bg-white/[0.04] text-[#989c99] hover:text-[#f0f0e9]"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="font-mono text-[10px] text-white/35 group-hover/item:text-[#d8ff58] transition-colors">
+                    02
+                  </span>
+                  <span className="font-mono text-xs font-bold tracking-wider uppercase transition-colors group-hover/item:text-white">
+                    GitHub
+                  </span>
+                </div>
+                <span className="text-xs text-white/30 group-hover/item:text-white/80 transition-transform duration-200 group-hover/item:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+            </nav>
+
+            {/* Actions: Portfolio & GitHub */}
+            <div className="pt-2 border-t border-white/10 flex items-center gap-1.5">
+              <a
+                href="https://singhcod3r.github.io/"
+                onClick={() => setIsNavExpanded(false)}
+                className="flex-1 py-1.5 px-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-white font-mono text-[11px] font-medium flex items-center justify-center gap-1 transition-all duration-200 active:scale-95 group"
+              >
+                <BookOpen className="w-3 h-3 text-[#a786ff]" />
+                <span>Portfolio</span>
+              </a>
+
+              <a
+                href="https://github.com/SinghCod3r"
+                onClick={() => setIsNavExpanded(false)}
+                className="flex-1 py-1.5 px-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-white font-mono text-[11px] font-medium flex items-center justify-center gap-1 transition-all duration-200 active:scale-95 group"
+              >
+                <GithubIcon className="w-3 h-3 text-[#d8ff58]" />
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Main Content Area */}
       <main className="max-w-[1240px] mx-auto px-4 sm:px-8 py-10 sm:py-16">
@@ -335,7 +474,7 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
 
                       {/* Title */}
                       <h2 className="text-lg sm:text-xl font-display font-semibold tracking-tight text-[#f0f0e9] group-hover:text-white transition-colors mb-2 leading-snug">
-                        <Link href={`/${post.slug}`} className="group-hover:text-[#d8ff58] transition-colors underline-offset-4">
+                        <Link href={`/blog/posts/${post.slug}`} className="group-hover:text-[#d8ff58] transition-colors underline-offset-4">
                           {post.frontmatter.title}
                         </Link>
                       </h2>
@@ -419,27 +558,27 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
                 Super Contributor || Full Stack Engineer
               </p>
 
-              {/* Follow Button */}
+              {/* GitHub Follow Button */}
               <a
-                href="https://singhcod3r.medium.com/"
+                href="https://github.com/SinghCod3r"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-mono font-bold bg-[#d8ff58] text-[#07080a] hover:opacity-90 transition-opacity mb-3"
               >
-                <MediumIcon className="w-3.5 h-3.5" />
-                <span>Follow on Medium</span>
+                <GithubIcon className="w-3.5 h-3.5" />
+                <span>Follow on GitHub</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
 
               {/* RSS Link Pill */}
               <a
-                href="/rss.xml"
+                href="/blog/rss.xml"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-[11px] font-mono border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] text-[#989c99] hover:text-[#f0f0e9] transition-colors mb-4"
               >
                 <Rss className="w-3 h-3 text-[#d8ff58]" />
-                <span>Raw RSS Feed (/rss.xml)</span>
+                <span>Raw RSS Feed (/blog/rss.xml)</span>
               </a>
 
               {/* Social Link Badges */}
@@ -460,7 +599,7 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
                   className="p-2 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-[#989c99] hover:text-white transition-colors"
                   aria-label="LinkedIn"
                 >
-                  <LinkedinIcon className="w-4 h-4" />
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
                 <a
                   href="mailto:singhayush9424@gmail.com"
@@ -508,14 +647,12 @@ export default function BlogView({ initialPosts }: BlogViewProps) {
             </a>
             .
           </p>
-          <Link
+          <a
             href="https://singhcod3r.github.io/"
-            target="_blank"
-            rel="noopener noreferrer"
             className="text-[#d8ff58] hover:underline inline-flex items-center gap-1"
           >
             <span>← Return to Portfolio</span>
-          </Link>
+          </a>
         </div>
       </footer>
     </div>
