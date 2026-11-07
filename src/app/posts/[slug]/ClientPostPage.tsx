@@ -382,7 +382,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
               <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
             </div>
 
-            <aside className="hidden lg:block sticky top-28">
+            <aside className="hidden lg:block sticky top-20">
               <nav className="rounded-2xl border border-white/10 bg-[#121316]/50 backdrop-blur-[20px] p-5 shadow-lg">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-[#989c99] mb-3">
                   Table of Contents

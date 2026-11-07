@@ -2,8 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
-import remarkHtml from 'remark-html';
 import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import type { Post, PostFrontmatter, Heading } from './types';
 import { formatDate, calculateReadingTime } from './utils';
 
@@ -38,8 +41,13 @@ export function getPostBySlug(slug: string): Post | null {
 
   // Process markdown to HTML
   const processor = remark()
-    .use(remarkHtml)
-    .use(remarkGfm);
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeSlug)
+    .use(rehypeAutolinkHeadings, {
+      behavior: 'wrap',
+    })
+    .use(rehypeStringify);
 
   const htmlContent = processor.processSync(content).toString();
 
