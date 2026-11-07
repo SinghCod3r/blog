@@ -32,12 +32,15 @@ export function generateSEO(props: SEOProps) {
     type = 'website',
   } = props;
 
-  const fullTitle = `${title} | ${SITE_NAME}`;
+  const isArticle = type === 'article';
+  const effectiveOgImage = isArticle ? undefined : ogImage;
 
   return {
-    title: fullTitle,
+    title,
     description,
-    canonical: canonicalUrl,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title,
       description,
@@ -45,19 +48,19 @@ export function generateSEO(props: SEOProps) {
       siteName: SITE_NAME,
       type,
       locale: 'en_US',
-      images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : [],
+      ...(effectiveOgImage ? { images: [{ url: effectiveOgImage, width: 1200, height: 630 }] } : {}),
       ...(publishedTime && { publishedTime }),
       ...(modifiedTime && { modifiedTime }),
       authors: [author],
       tags,
     },
     twitter: {
-      card: ogImage ? 'summary_large_image' : 'summary',
+      card: effectiveOgImage ? 'summary_large_image' : 'summary',
       site: TWITTER_HANDLE,
       creator: TWITTER_HANDLE,
       title,
       description,
-      ...(ogImage ? { images: [ogImage] } : {}),
+      ...(effectiveOgImage ? { images: [effectiveOgImage] } : {}),
     },
     robots: {
       index: true,

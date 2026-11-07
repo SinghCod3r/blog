@@ -48,22 +48,13 @@ export const metadata: Metadata = {
     siteName: 'Ayush Singh — Technical Writings',
     title: 'Ayush Singh — Technical Writings',
     description: 'Notes from building, debugging and contributing to real software.',
-    images: [
-      {
-        url: 'https://singhcod3r.github.io/hero_collage_desktop.webp',
-        width: 1200,
-        height: 630,
-        alt: 'Ayush Singh (SinghCod3r) Technical Writings',
-      },
-    ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     site: '@SinghCod3r',
     creator: '@SinghCod3r',
     title: 'Ayush Singh — Technical Writings',
     description: 'Notes from building, debugging and contributing to real software.',
-    images: ['https://singhcod3r.github.io/hero_collage_desktop.webp'],
   },
   icons: {
     icon: '/blog/favicon.ico',
