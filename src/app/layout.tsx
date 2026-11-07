@@ -85,7 +85,6 @@ const jsonLdSchema = {
       name: 'Ayush Singh',
       alternateName: ['SinghCod3r', 'Ayush', 'singhcod3r'],
       url: 'https://singhcod3r.github.io',
-      image: 'https://singhcod3r.github.io/my_image.webp',
       jobTitle: 'Software Developer & Linux Systems Contributor',
       description:
         'Software developer, open-source maintainer, and Linux systems engineer specializing in CUPS printing architecture, Python developer tooling, and modern web applications.',
