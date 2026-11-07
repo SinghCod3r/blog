@@ -13,25 +13,8 @@ tags:
 featured: true
 readingTime: "10 min read"
 ---
-# CUPS Website Redesign Proposal
 
-**Author:** Ayush Singh 
-**GitHub:** SinghCod3r 
-**Email:** ayushsinghceee@gmail.com 
-**Telegram:** SInghCod3r
-
----
-
-# CUPS Website Redesign Proposal
-
-**Author:** Ayush Singh  
-**GitHub:** SinghCod3r  
-**Email:** ayushsinghceee@gmail.com  
-**Telegram:** SInghCod3r
-
----
-
-## 1. Introduction
+## Introduction
 
 I have been looking at the CUPS website and the OpenPrinting website, and I think there is an opportunity to make them feel more connected. Currently, they feel like separate websites even though CUPS is one of the main OpenPrinting projects.
 
@@ -41,7 +24,7 @@ The goal is not to rebuild everything from scratch. It is to make the CUPS websi
 
 ---
 
-## 2. Goal
+## Goal
 
 The main goal is simple:
 
@@ -84,7 +67,7 @@ At the same time, CUPS must retain:
 
 ---
 
-## 3. Current Situation
+## Current Situation
 
 Right now, CUPS and OpenPrinting feel like separate websites.
 
@@ -108,7 +91,7 @@ This is not a criticism of the existing work. The websites function. But they co
 
 ---
 
-## 4. What I Propose
+## What I Propose
 
 My proposal is to rebuild the CUPS public website as a **simple static documentation and project website built from Markdown**, using the OpenPrinting design language while retaining CUPS-specific branding and content.
 
@@ -139,7 +122,7 @@ Instead of introducing a large web framework only for the website.
 
 ---
 
-## 5. OpenPrinting and CUPS Design Consistency
+## OpenPrinting and CUPS Design Consistency
 
 This is one of the most important parts of the proposal.
 
@@ -173,7 +156,7 @@ The two projects can use the same design language while still using technologies
 
 ---
 
-## 6. CUPS Identity
+## CUPS Identity
 
 This is not a proposal to remove CUPS branding.
 
@@ -207,7 +190,7 @@ The user should understand: "I am looking at CUPS, and CUPS is part of OpenPrint
 
 ---
 
-## 7. Proposed Website Structure
+## Proposed Website Structure
 
 I propose the following structure under OpenPrinting:
 
@@ -250,7 +233,7 @@ The website should make the following information easy to find:
 
 ---
 
-## 8. Documentation
+## Documentation
 
 Documentation should be a major focus. The current 80+ static HTML files should be reviewed and gradually migrated toward a structured Markdown-based system.
 
@@ -286,7 +269,7 @@ Man pages should remain an important source for command and API documentation. T
 
 ---
 
-## 9. Search
+## Search
 
 The current approach delegates search to DuckDuckGo. I propose a small client-side search index instead.
 
@@ -306,7 +289,7 @@ The goal is simple: users should be able to quickly find CUPS documentation with
 
 ---
 
-## 10. Embedded CUPS Web Interface
+## Embedded CUPS Web Interface
 
 Important distinction: the CUPS web administration interface at `localhost:631` is **not** the same thing as the public CUPS website.
 
@@ -336,7 +319,7 @@ The "Help" tab could link to the public documentation site. The header could use
 
 ---
 
-## 11. Accessibility
+## Accessibility
 
 Accessibility should not be an afterthought. It should be part of the normal website design.
 
@@ -355,7 +338,7 @@ Important improvements include:
 
 ---
 
-## 12. Performance and Dependencies
+## Performance and Dependencies
 
 I favor a small dependency footprint. This is especially appropriate for a long-lived open-source infrastructure project.
 
@@ -384,7 +367,7 @@ Static HTML works forever. Frameworks churn. The CUPS website should still be re
 
 ---
 
-## 13. Design System Proposal
+## Design System Proposal
 
 I do not propose immediately creating a large shared component library. That would be over-engineering for the first version.
 
@@ -414,7 +397,7 @@ This avoids unnecessary engineering work while still establishing the consistenc
 
 ---
 
-## 14. Three Possible Approaches
+## Three Possible Approaches
 
 Based on my research, here are three directions:
 
@@ -463,7 +446,7 @@ This is something that can be considered later, not something required for the f
 
 ---
 
-## 15. Recommended Approach
+## Recommended Approach
 
 I recommend **Option B — Strong OpenPrinting Integration**.
 
@@ -480,7 +463,7 @@ The main reasons:
 
 ---
 
-## 16. Implementation Plan
+## Implementation Plan
 
 I do not want to over-plan. Here is a rough phased approach:
 
@@ -539,7 +522,7 @@ I am not promising an exact timeline. The work can be done incrementally and rev
 
 ---
 
-## 17. What I Would Avoid
+## What I Would Avoid
 
 To keep the project focused and maintainable:
 
@@ -559,7 +542,7 @@ To keep the project focused and maintainable:
 
 ---
 
-## 18. Expected Result
+## Expected Result
 
 If this works well, the user experience would feel like:
 
@@ -589,7 +572,7 @@ This distinction is very important. The user should always know: "I am in CUPS, 
 
 ---
 
-## 19. Next Step
+## Next Step
 
 This proposal is a starting point for discussion.
 
@@ -599,7 +582,7 @@ I am happy to adjust the approach based on feedback. The goal is to make somethi
 
 ---
 
-## 20. Author
+## Author
 
 **Ayush Singh**  
 GitHub: [SinghCod3r](https://github.com/SinghCod3r)  
