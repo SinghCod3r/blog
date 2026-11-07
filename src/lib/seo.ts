@@ -52,12 +52,12 @@ export function generateSEO(props: SEOProps) {
       tags,
     },
     twitter: {
-      card: 'summary_large_image',
+      card: ogImage ? 'summary_large_image' : 'summary',
       site: TWITTER_HANDLE,
       creator: TWITTER_HANDLE,
       title,
       description,
-      images: ogImage ? [ogImage] : [],
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
     robots: {
       index: true,
