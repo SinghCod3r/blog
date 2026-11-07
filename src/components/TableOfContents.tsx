@@ -44,7 +44,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <aside className="hidden lg:block" aria-label="Table of contents">
-      <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4">
+      <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-4">
         <button
           className="w-full flex items-center justify-between text-xs font-mono text-muted mb-4 p-2 rounded-lg hover:bg-paper/5 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
