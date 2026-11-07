@@ -172,7 +172,6 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
                 fill
                 sizes="28px"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
-                priority
                 unoptimized
               />
               <span className="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-[#d8ff58] ring-1 ring-black" />
@@ -209,6 +208,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
                     sizes="48px"
                     className="object-cover"
                     unoptimized
+                    priority={false}
                   />
                   <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-[#d8ff58] ring-1.5 ring-black" />
                 </div>
