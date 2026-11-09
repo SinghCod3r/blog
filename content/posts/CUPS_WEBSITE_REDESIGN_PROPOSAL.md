@@ -19,7 +19,7 @@ archived: true
 >
 > This is the original version of the CUPS website redesign proposal, published on November 7, 2026. A revised version is now available following technical review.
 >
-> **[Read the Revised Proposal →](/blog/posts/cups-website-redesign-proposal-revised/)**
+> **[Read the Revised Proposal →](/blog/posts/CUPS_WEBSITE_REDESIGN_PROPOSAL_REVISED/)**
 
 ---
 
