@@ -332,6 +332,20 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
       </div>
 
       <main className="w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-20 py-10 sm:py-16">
+        {/* Back to Blog Navigation */}
+        <nav className="mb-8 md:mb-12" aria-label="Article navigation">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-[#f0f0e9] font-mono text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 group"
+            aria-label="Back to blog listing"
+          >
+            <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Blog
+          </Link>
+        </nav>
+
         <article className="prose-custom" itemScope itemType="https://schema.org/TechArticle">
           <header className="max-w-5xl mb-12 md:mb-16 article-header-reveal">
             <div className="flex items-center gap-3 mb-6 flex-wrap">
@@ -410,18 +424,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
           </div>
 
           <footer className="mt-16 pt-8 border-t border-white/10">
-            {/* Back to Articles */}
-            <nav className="flex items-center justify-start" aria-label="Article navigation">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-[#f0f0e9] font-mono text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 group"
-              >
-                <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Back to Articles
-              </Link>
-            </nav>
+            {/* Author / Post footer info can go here if needed */}
           </footer>
         </article>
       </main>

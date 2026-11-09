@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getAllPosts } from "../lib/posts";
+import { getAllPosts, getAllPostsForListing } from "../lib/posts";
 import BlogView from "../components/BlogView";
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const posts = getAllPosts();
+  const posts = getAllPostsForListing();
 
   return <BlogView initialPosts={posts} />;
 }

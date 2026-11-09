@@ -8,6 +8,7 @@ export interface PostFrontmatter {
   readingTime?: string;
   cover?: string;
   updated?: string;
+  archived?: boolean;
 }
 
 export interface Post {

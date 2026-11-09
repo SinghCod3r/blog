@@ -91,6 +91,10 @@ export function getAllPosts(): Post[] {
   return posts;
 }
 
+export function getAllPostsForListing(): Post[] {
+  return getAllPosts().filter(post => !post.frontmatter.archived);
+}
+
 export function getFeaturedPost(): Post | null {
   const posts = getAllPosts();
   return posts.find(post => post.frontmatter.featured) || posts[0] || null;

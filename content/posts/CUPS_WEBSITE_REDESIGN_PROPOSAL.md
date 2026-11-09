@@ -12,6 +12,15 @@ tags:
   - GitHub Pages
 featured: true
 readingTime: "10 min read"
+archived: true
+---
+
+> **REVISED PROPOSAL AVAILABLE**
+>
+> This is the original version of the CUPS website redesign proposal, published on November 7, 2026. A revised version is now available following technical review.
+>
+> **[Read the Revised Proposal →](/blog/posts/cups-website-redesign-proposal-revised/)**
+
 ---
 
 ## Introduction
@@ -185,6 +194,8 @@ CUPS must retain:
 * CUPS tagline ("The standards-based, open source printing system")
 * CUPS project name
 * CUPS-specific content and documentation
+* CUPS administration interface
+* CUPS technical identity
 
 The user should understand: "I am looking at CUPS, and CUPS is part of OpenPrinting."
 
@@ -490,7 +501,7 @@ Build the main pages:
 
 Gradually migrate and organize existing documentation:
 * Start with highest-traffic pages
-* Convert to Markdown with proper frontmatter
+* Convert to MarkDown with proper frontmatter
 * Implement TOC sidebar, search, breadcrumbs
 * Add "Edit this page" links
 * Set up man page → HTML conversion
