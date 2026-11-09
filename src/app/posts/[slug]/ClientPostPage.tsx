@@ -342,7 +342,7 @@ export default function ClientPostPage({ post, slug }: ClientPostPageProps) {
             <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Back to Blog
+            <span className="hidden sm:inline">Back to Blog</span>
           </Link>
         </nav>
 
